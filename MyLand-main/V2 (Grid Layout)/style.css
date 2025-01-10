@@ -139,9 +139,12 @@ nav a::before {
 }
 
 #cv:hover{
-    height: 2.2em;
     background-color: rgb(20, 223, 155);
     border-color: rgb(17, 179, 125);
+}
+#cv:hover a {
+    color: white;
+    text-shadow: 1px 1px black;
 }
 
 
@@ -299,8 +302,7 @@ h5, p {
     font-size: 1em;
     font-weight: 700;
     text-decoration: none;
-    color: white;
-    text-shadow: 1px 1px black;
+    color: hsl(225, 32%, 22%);
     background-color: rgb(17, 179, 125);
     border: 3px solid rgb(20, 223, 155);
     border-radius: 50px;
@@ -308,11 +310,11 @@ h5, p {
     -webkit-filter: drop-shadow(10px 10px 10px black);
     transition: all 0.1s ease-in;
 }
-
 #contact > a:hover {
-    padding: 1.25em;
     background-color: rgb(20, 223, 155);
     border-color: rgb(17, 179, 125);
+    color: white;
+    text-shadow: 1px 1px black;
 }
 
 /* FOOTER */
