@@ -14,12 +14,12 @@ html{
 }
 .container {
     font-family: 'Open Sans', sans-serif;
-    font: bold;
+    font-weight: bold;
     color: white;
     height: 100vh;
     min-width: 240px;
     display: grid;
-    grid-template-columns: 8% auto;
+    grid-template-columns: 2% auto;
     grid-template-rows: 10% auto 12%;
     grid-template-areas: 
     "nav nav"
@@ -50,42 +50,46 @@ html{
 }
 
 /* CONTENUTO PAGINA */
-
-a{
-    color: #000000;
-}
-
 /* NAV */
 .nav {
     width: 100%;
     height: auto;
-    border-bottom: 1px solid white;
     display: flex;
     justify-content: space-between;
     align-items: center;
     position: fixed;
     overflow: hidden;
-}
-
-.nav a:first-child{
-    height: 100%;
-    margin-left: 3%;
-    display: flex;
-    align-items: center;
+    background-color: hsl(225, 32%, 22%);
+    border-bottom: 1px solid white;
 }
 
 /* logo JP */
+.nav>a:first-child{
+    height: 100%;
+    margin-left: 3%;
+}
+
 #logo {
     background-color: transparent;
     height: 70px;
     width: 70px;
-    filter: drop-shadow(10px 10px 10px black); 
+    filter: drop-shadow(10px 10px 10px black);
     -webkit-filter: drop-shadow(10px 10px 10px black);
     transition: all 0.5s ease;
 }
 
+/* bottone panino per aprire menu dropdown */
+.menu-toggle {
+    font-size: 2rem;
+    margin-right: 3%;
+    cursor: pointer;
+    padding: 0px 7px 0px 7px;
+    border-radius: 5px;
+    display: none; /* Nascosto su desktop */
+}
+
 /* Menu del sito, figlio della classe container ".nav" */
-.nav nav {
+#navMenu {
     height: 100%;
     width: auto;
     display: flex;
@@ -94,9 +98,14 @@ a{
     margin-right: 2%;
 }
 
-.nav nav div{
+#navMenu>div{
     height: 100%;
     margin: 0 4%;
+}
+
+#navMenu>div:first-child,
+#navMenu>div:nth-child(2) {
+    background-color: transparent;
 }
 
 nav a {
@@ -117,24 +126,22 @@ nav a::before {
 
 .nav a:hover {
     color: rgb(20, 223, 155);
-    font-size: 1.3em;
-} 
+    font-size: 1.2em;
+}
 
 /* Box CV */
 #cv {
-    height: 2em;
     padding: 0.1em 0.7em;
     font-size: 1.3em;
     background-color: rgb(17, 179, 125);
     border: 3px solid rgb(20, 223, 155);
     border-radius: 25px;
-    filter: drop-shadow(10px 10px 10px black); 
+    filter: drop-shadow(10px 10px 10px black);
     -webkit-filter: drop-shadow(10px 10px 10px black);
     transition: all 0.1s ease-in;
 }
 
 #cv a{
-    font-size: 1.2em;
     color: hsl(225, 32%, 22%);
 }
 
@@ -142,6 +149,7 @@ nav a::before {
     background-color: rgb(20, 223, 155);
     border-color: rgb(17, 179, 125);
 }
+
 #cv:hover a {
     color: white;
     text-shadow: 1px 1px black;
@@ -151,7 +159,11 @@ nav a::before {
 /* x sovrascrivere le regole di ".nav a:before" */
 #cv a::before {
     content: "";
-    margin: -1%;
+    margin: 0;
+}
+
+#cv a:hover{
+    font-size: 1.1em;
 }
 
 /* LEFTBAR */
@@ -162,6 +174,7 @@ nav a::before {
     display: flex;
     flex-direction: column;
     transition: all 0.3s ease-in;
+    z-index: 2;
 }
 
 .leftbar a{
@@ -261,8 +274,6 @@ h5, p {
     background: url(img/fototessera.webp);
     background-size: cover;
     box-shadow: 13px 13px 20px black;
-    /* filter: drop-shadow(10px 10px 20px black); 
-    -webkit-filter: drop-shadow(10px 10px 20px black); */
 }
 
 .layover {
@@ -275,6 +286,64 @@ h5, p {
 #photo:hover .layover {
     opacity: 0;
     border-color: rgb(20, 223, 155);
+}
+
+/* Carousel */
+#carousel-slide{
+    text-align: center;
+    justify-content: center;
+    position: relative;
+    display: flex;
+}
+
+#carousel-slide button{
+    color: white;
+    background-color: transparent;
+    border: none;
+    height: 100%;
+    width: 10%;
+    position: absolute;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    filter: invert(37%) sepia(85%) saturate(388%) hue-rotate(121deg) brightness(94%) contrast(96%);
+}
+
+#carousel-prev{
+    left: 10%;
+    background-image:url("img/arrow-prev-svgrepo-com.svg");
+}
+
+#carousel-next{
+    right: 10%;
+    background-image:url("img/arrow-next-svgrepo-com.svg");
+}
+
+#carousel-slide button:hover{
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+#carousel-slide button:active{
+    filter: invert(1);
+}
+
+#carousel-inner{
+    width: 80%;
+}
+
+.carousel-item{
+    display: none;
+}
+
+.carousel-item.active{
+    display: block;
+}
+
+.carousel-item.active>img{
+    width: 100%;
+    max-height: 1080px;
+    border-radius: 20px;
+    border: 3px solid rgb(17, 179, 125);
 }
 
 /* Contact */
@@ -329,7 +398,7 @@ h5, p {
     font-size: 12px;
     position: relative; /* uso "relative" invece che "absolute" rispetto al "footer", perche la scritta rimane piu fissa e scala meglio la posizione al variare della dimensione della pagina */
     top: 50%;
-    left: 4%;
+    left: 1%;
 }
 
 .footer > a:hover {
@@ -337,7 +406,6 @@ h5, p {
     color: rgb(20, 223, 155);
 }
 
-/* PER SWITCHARE LAYOUT SU WIDTH MAGGIORI DI 2500px */
 @media only screen and (min-width: 1900px){
     
         /* MAIN */
@@ -365,7 +433,6 @@ h5, p {
     
         /* NAV */
         #logo {
-            background-color: transparent;
             height: 200px;
             width: 200px;
         }
@@ -388,12 +455,12 @@ h5, p {
         .nav a:hover {
             font-size: 3.8em;
         }
-    
+
         /* LEFTBAR */
         .leftbar a > img{
             height: 100px;
             width: 100px;
-        }      
+        }
         .leftbar img:hover {
             height: 80px;
             width: 80px;
@@ -416,7 +483,6 @@ h5, p {
         }
     }
 
-/* PER SWITCHARE LAYOUT SU WIDTH MINORI DI 1040px */
 @media only screen and (max-width: 1040px) {
 
     /* NAV */
@@ -428,6 +494,9 @@ h5, p {
         font-size: 1em;
     }
     #cv a{
+        font-size: 1em;
+    }
+    #cv a:hover{
         font-size: 1em;
     }
    
@@ -478,7 +547,6 @@ h5, p {
     }
 }
 
-/* PER SWITCHARE LAYOUT SU WIDTH MINORI DI 380px */
 @media only screen and (max-width: 385px) {
 
     /* NAV */
@@ -509,7 +577,7 @@ h5, p {
         color: rgb(20, 223, 155);
         border-color: rgb(20, 223, 155);
     }
-    
+
     /* SOTTO-SEZIONI DI "MAIN"*/
     h1 {
         font-size: 36px;
@@ -558,7 +626,6 @@ h5, p {
     }
 }
 
-/* PER SWITCHARE LAYOUT SU WIDTH MINORI DI 295px */
 @media only screen and (max-width: 295px) {
     
     /* CONTAINER PRINCIPALE MOBILE */
@@ -610,4 +677,34 @@ h5, p {
         text-align: center;
     }
 }
+/*--------------------------------------*/
+/* MENU DROPDOWN */
+@media screen and (max-width: 576px) {
+    .nav{
+        overflow: visible;
+    }
 
+    .menu-toggle {
+        display: block; /* Mostra l'icona */
+    }
+
+    #navMenu {
+        display: none; /* Nasconde il menu */
+        flex-direction: column;
+        align-items: end;
+        position: absolute;
+        height: auto;
+        width: 15%;
+        top: 60px;
+        right: 0px;
+        padding: 1rem;
+        border-radius: 8px;
+        background-color: transparent;
+    }
+
+    /* Mostra il menu quando attivo */
+    #navMenu.active {
+        display: flex;
+        animation: fade 1s ease;
+    }
+}
